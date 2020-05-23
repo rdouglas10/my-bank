@@ -11,9 +11,7 @@ class TransactionsService
     private
 
   def verify_account
-    p @transaction
-    abort("sdfsffffffppp")
-  
+    
   end
 
 end
