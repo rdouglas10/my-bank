@@ -1,0 +1,43 @@
+<div class="mt-4"></div>
+  <h2>My accounts</h2>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Bank Name</th>
+          <th>Agency number</th>
+          <th>Type Account</th>
+          <th>Account number</th>
+          <th>Balance</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if @accounts.length > 0 %>
+        <% @accounts.each do |account| %>
+          <tr>
+            <td><%= account.user_id %></td>
+            <td><%= account.bank_name %></td>
+            <td><%= account.agency_number %></td>
+            <td><%= account.type_account %></td>
+            <td><%= account.account_number %></td>
+            <td><%= account.balance %></td>
+            <td><%= link_to 'Show', account, class:'btn btn-info' %>
+            <%= link_to 'Edit', edit_account_path(account), class:'btn btn-warning' %>
+            <%= link_to 'Deactivate', account, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' %></td>
+          </tr>
+        <% end %>
+        <% else %>
+          <tr>
+            <td colspan="10">No account found...</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+      
+
+<br>
+
+<%= link_to 'New Account', new_account_path, class:'btn btn-primary' %>

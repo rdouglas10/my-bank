@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @deposit.account.account_number %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @deposit.value %>
+</p>
+
+<%= link_to 'Back', deposits_path %>

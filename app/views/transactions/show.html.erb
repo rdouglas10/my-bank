@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @transaction.user.username %>
+</p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @transaction.account.account_number %>
+</p>
+
+<p>
+  <strong>Operation:</strong>
+  <%= @transaction.operation %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @transaction.value %>
+</p>
+
+<p>
+  <strong>Account whither:</strong>
+  <%= @transaction.account_whither %>
+</p>
+
+<!--<%= link_to 'Edit', edit_transaction_path(@transaction) %> |-->
+<%= link_to 'Back', transactions_path %>

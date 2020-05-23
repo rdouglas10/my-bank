@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  account: one
+  operation: MyString
+  value: 1.5
+  account_whither: 
+
+two:
+  user: two
+  account: two
+  operation: MyString
+  value: 1.5
+  account_whither: 

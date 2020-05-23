@@ -1,0 +1,52 @@
+<%= form_with(url: '/transactions/withdraw', local: true) do |form| %>
+  <% if transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+      <ul>
+        <% transaction.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!--<div class="form-group">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>-->
+  <input type="hidden" name="transaction[user_id]" value="<%= current_user.id %>" />
+
+  <!--<div class="form-group">
+    <%= form.label :account_id %>
+    <%= form.text_field :account_id %>
+  </div>-->
+
+  <div class="form-group">
+    <%= form.label :account_id %> origin</br>
+    <%= collection_select(:transaction, :account_id, Account.all().where(user_id:current_user, active:1), :id, :name_with_initial, {:prompt => false}, {:class=>'form-control'}) %>
+  </div>
+
+
+  <!--<div class="form-group">
+    <%= form.label :operation %>
+    <%= form.text_field :operation, class:'form-control' %>
+  </div>-->
+
+  <div class="form-group">
+    <%= form.label :operation %></br>
+    <label>Withdraw = Saque (R$)</label>;
+    <%= select_tag "transaction[operation]", raw("<option>Withdraw</option>"), class:'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <label>Value</label>
+    <input type="text" name="transaction[value]" id="transaction_value" class="form-control"/>
+  </div>
+
+  <input type="hidden" name="transaction[account_whither]" value="--" id="transaction_account_whither" />
+  
+  <div class="actions">
+  <%= form.submit "Send", class: "btn btn-primary" %>
+</div>
+<% end %>
