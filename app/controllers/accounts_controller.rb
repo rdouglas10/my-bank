@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:index, :new, :show, :edit, :create, :update, :destroy, :statement, :consult]
-  skip_before_action :verify_authenticity_token, :only => :consult
+  before_action :authenticate_user!, only: [:index, :new, :show, :edit, :create, :update, :destroy, :statement]
+  skip_before_action :verify_authenticity_token, :only => :statement
   # GET /accounts
   # GET /accounts.json
   def index
@@ -23,22 +23,19 @@ class AccountsController < ApplicationController
   def edit
   end
 
-  # GET /accounts/statement
+  # POST /accounts/statement
   def statement
-    
-  end 
-
-  # POST /accounts/consult
-  def consult
-    @accounts = Account.all().where("user":current_user.id, "active":1)
     if params[:date_stt] && params[:date_end] != ""
       start_date = params[:date_stt].to_date.beginning_of_day
       end_date = params[:date_end].to_date.end_of_day
       @records = Transaction.where(:created_at => start_date..end_date, user_id:current_user, )
+
+      @account = Account.select(:id).where(user_id:current_user)
+      @querys = Deposit.where(:created_at => start_date..end_date, account_id:@account)
     else
       @records = nil
+      @querys = nil
     end
-    
   end 
 
   # POST /accounts

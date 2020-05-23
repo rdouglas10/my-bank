@@ -6,7 +6,7 @@
   <div class="float-left">
   ***Format Date: 2020-20-20
   </div>
-  <form action="/accounts/consult" method="post">
+  <form action="" method="post">
   <%= csrf_meta_tags %>
     <div class="form-group row float-right">
       <label>Start Date</label>&nbsp;&nbsp;
@@ -24,25 +24,29 @@
       <thead>
         <tr>
           <th>User</th>
-          <th>Bank Name</th>
+          <th>Account number</th>
           <th>Agency number</th>
           <th>Type Account</th>
-          <th>Account number</th>
-          <th>Balance</th>
+          <th>Value</th>
+          <th>Account Whither</th>
+          <th>Rate</th>
+          <th>Created at</th>
           <th colspan="3"></th>
         </tr>
       </thead>
 
       <tbody>
-        <% if @accounts  %>
-        <% @accounts.each do |record| %>
+        <% if @records  %>
+        <% @records.each do |record| %>
           <tr>
             <td><%= record.user_id %></td>
-            <td><%= record.bank_name %></td>
-            <td><%= record.agency_number %></td>
-            <td><%= record.type_account %></td>
-            <td><%= record.account_number %></td>
-            <td><%= record.balance %></td>
+            <td><%= record.account.account_number %></td>
+            <td><%= record.account.agency_number %></td>
+            <td><%= record.operation %></td>
+            <td><%= record.value %></td>
+            <td><%= record.account_whither %></td>
+            <td><%= record.rate %></td>
+            <td><%= record.created_at %></td>
             
           </tr>
         <% end %>
@@ -55,6 +59,45 @@
     </table>
       
 
+
+    </br></br></br></br>Deposit
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Account number</th>
+          <th>Agency number</th>
+          <th>Type Account</th>
+          <th>Value</th>
+          <th>Account Whither</th>
+          <th>Rate</th>
+          <th>Created at</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if @querys  %>
+        <% @querys.each do |query| %>
+          <tr>
+            <td><%= query.account.user_id %></td>
+            <td><%= query.account.account_number %></td>
+            <td><%= query.account.agency_number %></td>
+            <td>Deposit</td>
+            <td><%= query.value %></td>
+            <td><%= query.account_number %></td>
+            <td>--</td>
+            <td><%= query.created_at %></td>
+            
+          </tr>
+        <% end %>
+        <% else %>
+          <tr>
+            <td colspan="10">No account found...</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 <br>
 
 

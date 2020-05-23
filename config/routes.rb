@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   
+  get 'accounts/statement'
+  post 'accounts/statement'
+
   resources :deposits
   # get 'accounts/cash'
-
-  get 'accounts/statement'
-  post 'accounts/consult'
   
   resources :accounts
 
